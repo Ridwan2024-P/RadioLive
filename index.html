@@ -1,77 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhaka Radio Live</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-Voting - Vote Now</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #eaf5f3;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2, h5 {
+      color: #006400; /* Dark Green */
+    }
+
+    .btn-vote {
+      background-color: #006400; /* Bangladesh Green */
+      color: white;
+    }
+
+    .btn-vote:hover {
+      background-color: #004d00; /* Darker Green */
+    }
+
+    .card {
+      border-left: 8px solid #d40000; /* Red Color of Bangladesh Flag */
+      background-color: #fff;
+    }
+
+    .list-group-item-success {
+      background-color: #c7f0d8; /* Light Green */
+    }
+
+    .list-group-item-danger {
+      background-color: #f0d3d3; /* Light Red */
+    }
+
+    .badge {
+      font-size: 1.1rem;
+      background-color: #d40000; /* Red */
+    }
+
+    .card-header {
+      background-color: #006400; /* Green */
+      color: white;
+    }
+
+    .card-body {
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      padding: 50px 0;
+    }
+
+    .flag-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #d40000;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="box">
-            <h2>Dhaka FM 89.6</h2>
-            <audio class="radioPlayer" loop>
-                <source src="http://stream.zeno.fm/8wv4d8g4344tv" type="audio/ogg">
-            </audio>
-            <button class="btn btn-primary btn-toggle mt-3">Play</button>
+  <div class="container">
+    <h2 class="mb-4 text-center" style="color:  #d40000;">বাংলাদেশ গণ ভোট</h2>
+
+    
+
+    <!-- Question 1 -->
+    <form onsubmit="submitVote(event, 'q1')">
+      <div class="card p-4 mb-4">
+        <h5 >1️⃣ আপনি কি মনে করেন ড. মুহাম্মদ ইউনূস যদি আগামী ৫ বছর প্রধানমন্ত্রী হন, তা বাংলাদেশের জন্য উপকারী হবে?</h5>
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="radio" name="q1" value="Alice" id="q1a" required>
+          <label class="form-check-label d-flex justify-content-between" for="q1a">
+            <span>হ্যাঁ</span>
+            <span class="badge" id="count-Alice">0</span>
+          </label>
         </div>
-        
-        <div class="box">
-            <h2>Dhaka FM 90.4</h2>
-            <audio class="radioPlayer" loop>
-                <source src="http://118.179.219.244:8000/;" type="audio/ogg">
-                <source src="http://118.179.219.244:8000/;" type="audio/mpeg">
-            </audio>
-            <button class="btn btn-primary btn-toggle mt-3">Play</button>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="q1" value="Bob" id="q1b">
+          <label class="form-check-label d-flex justify-content-between" for="q1b">
+            <span>না</span>
+            <span class="badge" id="count-Bob">0</span>
+          </label>
         </div>
-        
-        <div class="box">
-            <h2>Dhaka Radio</h2>
-            <audio class="radioPlayer" loop>
-                <source src="http://118.179.219.244:8000/;" type="audio/ogg">
-                <source src="http://118.179.219.244:8000/;" type="audio/mpeg">
-            </audio>
-            <button class="btn btn-primary btn-toggle mt-3">Play</button>
+        <button type="submit" class="btn btn-vote">ভোট দিন</button>
+      </div>
+    </form>
+
+    <!-- Question 2 -->
+    <form onsubmit="submitVote(event, 'q2')">
+      <div class="card p-4 mb-4">
+        <h5>2️⃣ আপনি কি নির্বাচন চান?</h5>
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="radio" name="q2" value="Tech Fest" id="q2a" required>
+          <label class="form-check-label d-flex justify-content-between" for="q2a">
+            <span>হ্যাঁ</span>
+            <span class="badge" id="count-Tech Fest">0</span>
+          </label>
         </div>
-    </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="q2" value="Sports Day" id="q2b">
+          <label class="form-check-label d-flex justify-content-between" for="q2b">
+            <span>না</span>
+            <span class="badge" id="count-Sports Day">0</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-vote">ভোট দিন</button>
+      </div>
+    </form>
 
-    <script>
-        const radioButtons = document.querySelectorAll(".btn-toggle");
-        const radios = document.querySelectorAll(".radioPlayer");
+    <!-- Question 3 -->
+    <form onsubmit="submitVote(event, 'q3')">
+      <div class="card p-4 mb-4">
+        <h5>3️⃣ আপনি কি মনে করেন শিক্ষার্থীদের জন্য প্রোগ্রামিং শেখা বাধ্যতামূলক হওয়া উচিত?</h5>
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="radio" name="q3" value="YesProgramming" id="q3a" required>
+          <label class="form-check-label d-flex justify-content-between" for="q3a">
+            <span>হ্যাঁ</span>
+            <span class="badge" id="count-YesProgramming">0</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="q3" value="NoProgramming" id="q3b">
+          <label class="form-check-label d-flex justify-content-between" for="q3b">
+            <span>না</span>
+            <span class="badge" id="count-NoProgramming">0</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-vote">ভোট দিন</button>
+      </div>
+    </form>
 
-        radioButtons.forEach((button, index) => {
-            let isPlaying = false;
+    <!-- Question 4 -->
+    <form onsubmit="submitVote(event, 'q4')">
+      <div class="card p-4 mb-4">
+        <h5>4️⃣ আপনি কি মনে করেন বাংলাদেশের শিক্ষা ব্যবস্থায় আরও প্রযুক্তি যুক্ত হওয়া উচিত?</h5>
+        <div class="form-check mt-2">
+          <input class="form-check-input" type="radio" name="q4" value="YesTech" id="q4a" required>
+          <label class="form-check-label d-flex justify-content-between" for="q4a">
+            <span>হ্যাঁ</span>
+            <span class="badge" id="count-YesTech">0</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="q4" value="NoTech" id="q4b">
+          <label class="form-check-label d-flex justify-content-between" for="q4b">
+            <span>না</span>
+            <span class="badge" id="count-NoTech">0</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-vote">ভোট দিন</button>
+      </div>
+    </form>
 
-            button.addEventListener("click", () => {
-                
-                radios.forEach((radio, i) => {
-                    if (i !== index) {
-                        radio.pause();
-                        radioButtons[i].textContent = "Play";
-                        radioButtons[i].classList.replace("btn-danger", "btn-primary");
-                    }
-                });
+  </div>
 
-                const radio = radios[index];
-                
-                if (isPlaying) {
-                    radio.pause();
-                    button.textContent = "Play";
-                    button.classList.replace("btn-danger", "btn-primary");
-                } else {
-                    radio.play().then(() => {
-                        button.textContent = "Stop";
-                        button.classList.replace("btn-primary", "btn-danger");
-                    }).catch((error) => {
-                        console.error("Error playing radio:", error);
-                        alert("There was an error playing the radio. Please try again.");
-                    });
-                }
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
-                isPlaying = !isPlaying;
-            });
+  <!-- Firebase Logic -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA68w46Zp0dow9D3qOZx2dTNPUS9CbG_KM",
+      authDomain: "kicuna-ceb0c.firebaseapp.com",
+      projectId: "kicuna-ceb0c",
+      storageBucket: "kicuna-ceb0c.appspot.com",
+      messagingSenderId: "1089007814850",
+      appId: "1:1089007814850:web:3e2eebfe580e447304535b",
+      measurementId: "G-H47T37C1TE",
+      databaseURL: "https://kicuna-ceb0c-default-rtdb.firebaseio.com"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    function submitVote(event, questionName) {
+      event.preventDefault();
+      const form = event.target;
+      const choice = form.querySelector(`input[name="${questionName}"]:checked`);
+      if (choice) {
+        const selectedVote = choice.value;
+        updateVoteInDatabase(selectedVote);
+        form.reset();
+      }
+    }
+
+    function updateVoteInDatabase(vote) {
+      const voteRef = database.ref('votes/' + vote);
+      voteRef.get().then((snapshot) => {
+        let currentVotes = snapshot.val() || 0;
+        voteRef.set(currentVotes + 1);
+
+        // Update the vote count on the page
+        document.getElementById("count-" + vote).textContent = currentVotes + 1;
+      });
+    }
+
+    // Fetch and display the initial vote counts when the page loads
+    window.onload = function() {
+      const voteCounts = ['Alice', 'Bob', 'Tech Fest', 'Sports Day', 'YesProgramming', 'NoProgramming', 'YesTech', 'NoTech'];
+      voteCounts.forEach(vote => {
+        const voteRef = database.ref('votes/' + vote);
+        voteRef.get().then((snapshot) => {
+          const count = snapshot.val() || 0;
+          document.getElementById("count-" + vote).textContent = count;
         });
-    </script>
+      });
+    };
+  </script>
 </body>
 </html>
